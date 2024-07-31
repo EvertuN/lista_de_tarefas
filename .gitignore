@@ -51,6 +51,7 @@ lib/firebase_options.dart
 =======
 # See https://www.dartlang.org/guides/libraries/private-files
 
+
 # Files and directories created by pub
 .dart_tool/
 .packages
@@ -78,4 +79,3 @@ doc/api/
 .flutter-plugins-dependencies
 >>>>>>> 748959870361b7a911d0eaaaa8b71df97b59d476
 
-ios
