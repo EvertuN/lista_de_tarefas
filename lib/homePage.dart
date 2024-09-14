@@ -33,8 +33,8 @@ class _HomePageState extends State<HomePage> {
   Future<void> buscarTarefas() async {
     try {
       List<String>? listarTarefas = [];
-      listarTarefas =
-          (await DatabaseOperationFirebase().listTasksFirebase()).cast<String>();
+      listarTarefas = (await DatabaseOperationFirebase().listTasksFirebase())
+          .cast<String>();
       setState(() {
         tarefas = listarTarefas!;
         isLoading = false;
@@ -68,7 +68,10 @@ class _HomePageState extends State<HomePage> {
                   await FirebaseAuth.instance.signOut();
                   Navigator.pushReplacementNamed(context, AppRoutes.loginPage);
                 },
-                child: const Icon(Icons.logout, color: CustomColors.appbartextcolor,)),
+                child: const Icon(
+                  Icons.logout,
+                  color: CustomColors.appbartextcolor,
+                )),
           ),
         ],
         elevation: 5,
@@ -77,84 +80,83 @@ class _HomePageState extends State<HomePage> {
       ),
       body: isLoading
           ? const Center(
-        child: CircularProgressIndicator(),
-      )
-      //     : tarefas.isEmpty
-      //     ? const Center(
-      //   child: Text('Nenhuma tarefa encontrada.'),
-      // )
+              child: CircularProgressIndicator(),
+            )
+          //     : tarefas.isEmpty
+          //     ? const Center(
+          //   child: Text('Nenhuma tarefa encontrada.'),
+          // )
           : Padding(
-        padding: const EdgeInsets.symmetric(
-          vertical: 8,
-          horizontal: 8,
-        ),
-        child: Column(
-          children: [
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: CustomColors.secondarytextColor,
-                minimumSize: const Size(400, 50),
-                shape: const RoundedRectangleBorder(
-                    borderRadius:
-                    BorderRadius.all(Radius.circular(15))),
+              padding: const EdgeInsets.symmetric(
+                vertical: 8,
+                horizontal: 8,
               ),
-              onPressed: () {
-                Navigator.pushNamed(context, AppRoutes.taskList);
-              },
-              child: const Text(
-                'Adicionar Tarefa',
-                style: TextStyle(
-                    color: CustomColors.appbartextcolor, fontSize: 18),
-              ),
-            ),
-            const SizedBox(
-              height: 12,
-            ),
-            Expanded(
-              child: ListView.builder(
-                itemCount: tarefas.length,
-                itemBuilder: (context, index) {
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(
-                      vertical: 8,
-                    ),
-                    child: ListTile(
+              child: Column(
+                children: [
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: CustomColors.secondarytextColor,
+                      minimumSize: const Size(400, 50),
                       shape: const RoundedRectangleBorder(
-                          borderRadius:
-                          BorderRadius.all(Radius.circular(15))),
-                      tileColor: CustomColors.primaryColor,
-                      leading: IconButton(
-                        icon: const Icon(
-                          Icons.edit,
-                          color: CustomColors.appbartextcolor,
-                        ),
-                        onPressed: () {
-                          // _editarNomeDialog(pessoas[index], index);
-                        },
-                      ),
-                      title: Text(
-                        tarefas[index],
-                        style: const TextStyle(
-                            color: CustomColors.appbartextcolor, fontSize: 20),
-                      ),
-                      trailing: IconButton(
-                        icon: const Icon(
-                          Icons.delete,
-                          color: CustomColors.appbartextcolor,
-                        ),
-                        onPressed: () {
-                          // excluirUsuario(pessoas[index]);
-                        },
-                      ),
+                          borderRadius: BorderRadius.all(Radius.circular(15))),
                     ),
-                  );
-                },
+                    onPressed: () {
+                      Navigator.pushNamed(context, AppRoutes.taskList);
+                    },
+                    child: const Text(
+                      'Adicionar Tarefa',
+                      style: TextStyle(
+                          color: CustomColors.appbartextcolor, fontSize: 18),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 12,
+                  ),
+                  Expanded(
+                    child: ListView.builder(
+                      itemCount: tarefas.length,
+                      itemBuilder: (context, index) {
+                        return Padding(
+                          padding: const EdgeInsets.symmetric(
+                            vertical: 8,
+                          ),
+                          child: ListTile(
+                            shape: const RoundedRectangleBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(15))),
+                            tileColor: CustomColors.primaryColor,
+                            leading: IconButton(
+                              icon: const Icon(
+                                Icons.edit,
+                                color: CustomColors.appbartextcolor,
+                              ),
+                              onPressed: () {
+                                // _editarNomeDialog(pessoas[index], index);
+                              },
+                            ),
+                            title: Text(
+                              tarefas[index],
+                              style: const TextStyle(
+                                  color: CustomColors.appbartextcolor,
+                                  fontSize: 20),
+                            ),
+                            trailing: IconButton(
+                              icon: const Icon(
+                                Icons.delete,
+                                color: CustomColors.appbartextcolor,
+                              ),
+                              onPressed: () {
+                                // excluirUsuario(pessoas[index]);
+                              },
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                ],
               ),
             ),
-
-          ],
-        ),
-      ),
     );
   }
 }

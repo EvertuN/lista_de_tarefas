@@ -88,7 +88,7 @@ class _TaskListState extends State<TaskList> {
         child: Column(
           children: <Widget>[
             const SizedBox(height: 30),
-            TextFormField(
+              TextFormField(
               controller: _taskController,
               decoration: const InputDecoration(
                 labelText: 'Digite aqui',
